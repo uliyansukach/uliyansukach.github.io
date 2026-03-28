@@ -7,31 +7,71 @@
             font-family: sans-serif; 
             text-align: center; 
             background-color: #f0f8ff; 
-            padding-top: 50px; 
+            padding: 50px 20px; 
         }
-        h1 { color: #333; }
+        h1 { color: #333; margin-bottom: 10px; }
+        h2 { 
+            color: #444; 
+            margin-top: 40px; 
+            font-size: 1.2rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+        p.intro { color: #666; margin-bottom: 30px; }
+        
         .card { 
             background: white; 
-            padding: 20px; 
-            border-radius: 10px; 
+            padding: 40px; 
+            border-radius: 15px; 
             display: inline-block; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-            max-width: 80%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            max-width: 900px;
+            width: 100%;
         }
+        
+        .viz-section {
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        iframe { 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+            width: 100%; 
+            height: 550px;
+            background: #fff;
+        }
+
         img { 
             max-width: 100%; 
             height: auto; 
-            border-radius: 5px; 
-            margin-top: 20px;
+            border-radius: 8px; 
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 <body>
+
     <div class="card">
         <h1>Hello, I'm Uliyan!</h1>
-        <p>My Crime Data Visualization:</p>
-        
-        <img src="comparing%20crimes.png" alt="Crime Chart">
+        <p class="intro">Social Data and Visualization - Spring 2026</p>
+
+        <div class="viz-section">
+            <h2>SF Vehicle Theft Heatmap</h2>
+            <iframe src="sf_vehicle_theft_heatmap.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="viz-section">
+            <h2>Hourly Crime Distribution</h2>
+            <iframe src="crime_hourly_interactive.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="viz-section">
+            <h2>Comparing Crimes (Static Analysis)</h2>
+            <img src="comparing%20crimes.png" alt="Crime Comparison Chart">
+        </div>
     </div>
+
 </body>
 </html>
