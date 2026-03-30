@@ -1,76 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Uliyan's Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SF Crime Data Story</title>
     <style>
-        body { 
-            font-family: sans-serif; 
-            text-align: center; 
-            background-color: #f0f8ff; 
-            padding: 50px 20px; 
+        /* Import Modern Tech Font (Inter) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        /* Base Variables & Reset - Clean Modern Theme */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #374151; /* Dark slate gray for readability */
+            --text-heading: #111827; /* Near black for headers */
+            --text-muted: #6b7280;
+            --accent: #2563eb; /* Vibrant electric blue */
+            --accent-light: #eff6ff; /* Very light blue for backgrounds */
+            --border-color: #e5e7eb;
         }
-        h1 { color: #333; margin-bottom: 10px; }
-        h2 { 
-            color: #444; 
-            margin-top: 40px; 
-            font-size: 1.2rem;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
-        }
-        p.intro { color: #666; margin-bottom: 30px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        .card { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 15px; 
-            display: inline-block; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            max-width: 900px;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding-bottom: 60px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout Container */
+        .article-container {
+            max-width: 760px; /* Slightly narrower for optimal reading length */
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Typography */
+        h1 { 
+            font-size: 2.75rem; 
+            font-weight: 800;
+            margin-bottom: 24px; 
+            color: var(--text-heading); 
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        h1 span { 
+            color: var(--accent); 
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin: 50px 0 20px 0;
+            letter-spacing: -0.01em;
+        }
+        
+        p { 
+            font-size: 1.125rem; 
+            margin-bottom: 24px; 
+        }
+
+        strong {
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        a:hover {
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Modern Callout Box (Replaces the Blockquote) */
+        .callout-box {
+            background-color: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 24px 32px;
+            margin: 40px 0;
+            border-radius: 0 12px 12px 0;
+            font-size: 1.15rem;
+            color: #1e3a8a; /* Deep blue text */
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Visualization Styling */
+        .viz-box {
             width: 100%;
+            margin: 48px 0 16px 0;
+            background-color: #ffffff; 
+            border-radius: 12px; /* Smooth rounded corners */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Soft, floating shadow */
+            border: 1px solid var(--border-color); 
         }
+        iframe { width: 100%; height: 600px; border: none; display: block; }
+        img { width: 100%; height: auto; display: block; }
         
-        .viz-section {
-            margin-bottom: 60px;
-            text-align: left;
+        .caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            line-height: 1.5;
+        }
+        .caption strong {
+            color: var(--text-main);
         }
 
-        iframe { 
-            border: 1px solid #eee; 
-            border-radius: 8px; 
-            width: 100%; 
-            height: 550px;
-            background: #fff;
-        }
-
-        img { 
-            max-width: 100%; 
-            height: auto; 
-            border-radius: 8px; 
-            margin-top: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        /* Footer */
+        footer { 
+            text-align: center; 
+            margin-top: 80px; 
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Hello, I'm Uliyan!</h1>
-        <p class="intro">Social Data and Visualization - Spring 2026</p>
+    <div class="article-container">
+        
+        <header>
+            <h1>Exploring patterns of the most common crime in San Francisco (2003 - Now) <span></span></h1>
+            <div class="subtitle">An interactive data story analyzing over two decades of police records to uncover where and when theft happens.</div>
+        </header>
 
-        <div class="viz-section">
-            <h2>SF Vehicle Theft Heatmap</h2>
-            <iframe src="sf_vehicle_theft_heatmap.html" frameborder="0"></iframe>
-        </div>
+        <p><strong>Did you know which is the most common crime in your state, and how well it is represented in your neighborhood?</strong></p>
+        <p>It seems that San Francisco (SF) experiences a lot of <strong>Larceny/Theft</strong>, but is it so surprising? When talking of Larceny/Theft it specifically includes these sub-categories: Auto-parts, From Vehicle, Bicycle, From building, pickpocket, purse snatch, shoplifting, and other.</p>
 
-        <div class="viz-section">
-            <h2>Hourly Crime Distribution</h2>
-            <iframe src="crime_hourly_interactive.html" frameborder="0"></iframe>
+        <div class="viz-box">
+            <img src="SF_yearly_crime_trends.png" alt="SF Yearly Crime Trends">
         </div>
+        <p class="caption"><strong>Figure 1:</strong> Total crime incidents in San Francisco by category, comparing the historical 2003-2018 period to the 2018-Present period. Larceny/Theft overwhelmingly dominates the criminal landscape, dwarfing the second most common offense (Assault) by hundreds of thousands of incidents. (Note: The 2018-Present period covers fewer years, resulting in naturally lower raw totals for recent years).</p>
 
-        <div class="viz-section">
-            <h2>Comparing Crimes (Static Analysis)</h2>
-            <img src="comparing%20crimes.png" alt="Crime Comparison Chart">
+        <h2>The Geographical Hotspots</h2>
+        <p>According to <a href="https://www.pewresearch.org/short-reads/2024/04/24/what-the-data-says-about-crime-in-the-us/#:~:text=Which%20kinds%20of%20crime%20are,of%20the%20offense%20in%202013." target="_blank">Pew Research</a>, Larceny/Theft is the most common crime in the US. Let's explore further how exposed your neighborhood is and how it has changed over time.</p>
+        <p>The map below uses a relative ratio describing how heavily the crimes are present compared to the overall city average. This shows how concentrated <strong>Larceny/Theft</strong> is in a specific district compared to San Francisco as a whole. It is to be noticed that the <strong>Central district</strong> is always above the average, which can be due to the district's geography. It encompasses major tourist hubs like Fisherman's Wharf and Chinatown, providing a target-rich environment of crowded retail streets and parked rental cars, making it a highly lucrative area for opportunistic crimes like pickpocketing and vehicle break-ins.</p>
+        
+        <div class="viz-box">
+            <iframe src="theft_district_interactive.html"></iframe>
         </div>
+        <p class="caption"><strong>Figure 2:</strong> The relative concentration of Larceny/Theft across San Francisco's police districts. An index of 1.0 (white) means the district's theft rate perfectly matches the citywide average. Areas in red (>1.0) indicate that theft makes up a disproportionately large share of the local crime profile, revealing that districts like Central are persistent hotspots regardless of the year.</p>        
+        <p>We also see an increasing crime pattern for the <strong>Richmond district</strong> from 2015, which is a wealthy residential homeowners district. This data spike can be explained and perfectly aligns with the implementation of California's <strong>Proposition 47</strong>, passed in November 2014. The law reclassified non-violent thefts under $950 from felonies to misdemeanors. According to <a href="https://www.ppic.org/publication/the-impact-of-proposition-47-on-crime-and-recidivism/" target="_blank">studies by the Public Policy Institute of California</a>, this policy change directly contributed to a statewide surge in larcenies—specifically thefts from motor vehicles. Because the Richmond borders major tourist destinations like Golden Gate Park and Lands End, the 2015 spike in our dataset captures the neighborhood becoming a prime target for this new wave of opportunistic 'smash-and-grab' car break-ins.</p>
+
+        
+
+        <h2>When Do Thieves Strike?</h2>
+        <p>Finally, you can see the average amount of crime activity during the day on a weekly basis for your district. Surprisingly or not in every district, most thefts occur Friday evening—you better watch your back 😉. This suggests that thieves actively target areas during high-traffic weekend and nightlife hours.</p>
+        <p>However, the reality of crime timing is much more nuanced. As highlighted in an <a href="https://www.lathamssteeldoors.co.uk/blog/day-vs-night-when-do-burglaries-happen/" target="_blank">analysis of theft patterns by Latham's Security Doors</a>, the time of day a crime occurs depends entirely on the target. Their research notes that residential burglaries and thefts actually peak during the day when homeowners are away at work, whereas commercial thefts and vehicle break-ins dominate the nighttime hours.</p>
+    
+        <div class="callout-box">
+            Therefore, the specific "danger hours" you discover below don't just tell you when crime happens; they give us a major clue about what kind of theft defines that specific neighborhood.
+        </div>
+        <p>This external insight perfectly explains the complex, shifting patterns found in our San Francisco dataset. Because the SFPD groups a massive variety of offenses—from midday shoplifting to 2:00 AM car break-ins—into a single umbrella category of "Larceny / Theft," the heat signatures vary drastically depending on the neighborhood's zoning. If a district glows red at 8:00 PM on a Friday, the data is likely capturing nightlife-related thefts and car break-ins. Conversely, if a district peaks on a Tuesday afternoon, it perfectly aligns with the daytime residential theft patterns described in the article.</p>
+
+        
+
+        <div class="viz-box">
+            <iframe src="average_weekly_thefts_heatmap.html"></iframe>
+        </div>
+        <p class="caption"><strong>Figure 3:</strong> Average weekly Larceny/Theft incidents broken down by hour and day of the week. While exact volumes vary by neighborhood, exploring the districts reveals a clear behavioral pattern: thefts consistently peak on Friday evenings.</p>
+
+        <h2>Behind the Story</h2>
+        <p>Would you like to know what the story is based on? The insights in this article are driven by over two decades of public data from the San Francisco Police Department (SFPD). Spanning from 2003 to today, the records capture the exact time, location, and category of hundreds of thousands of reported incidents. As Figure 1 illustrates, this goes far beyond just Larceny/Theft, covering a wide spectrum of criminal activity.</p>
+        <p>Like all official public safety records, the dataset captures incidents reported to authorities rather than a perfect tally of all events. Yet still, the volume of a 20-year dataset allows powerful, undeniable patterns to emerge.</p>
+        <p>Explore the data yourself and build your own patterns using the <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783/about_data" target="_blank">SFPD Incident Reports Database</a>.</p>
+
+        <footer>
+            <p>Created by Uliyan Sukach for Social Data and Visualization, DTU.</p>
+        </footer>
+
     </div>
 
 </body>
